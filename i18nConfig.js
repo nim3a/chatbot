@@ -1,10 +1,11 @@
 const i18nConfig = {
-  defaultLocale: "en",
+  defaultLocale: "fa",
   locales: [
+    "fa",
+    "en",
     "ar",
     "bn",
     "de",
-    "en",
     "es",
     "fr",
     "he",

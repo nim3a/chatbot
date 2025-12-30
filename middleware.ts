@@ -4,6 +4,7 @@ import { NextResponse, type NextRequest } from "next/server"
 import i18nConfig from "./i18nConfig"
 
 export async function middleware(request: NextRequest) {
+  // Handle i18n routing first - this will redirect to /fa if needed
   const i18nResult = i18nRouter(request, i18nConfig)
   if (i18nResult) return i18nResult
 
@@ -12,7 +13,18 @@ export async function middleware(request: NextRequest) {
 
     const session = await supabase.auth.getSession()
 
-    const redirectToChat = session && request.nextUrl.pathname === "/"
+    // Extract locale from pathname (e.g., /fa/...)
+    const pathSegments = request.nextUrl.pathname.split('/').filter(Boolean)
+    const locale = i18nConfig.locales.includes(pathSegments[0]) 
+      ? pathSegments[0] 
+      : i18nConfig.defaultLocale
+
+    // Check if user is on root path for their locale (e.g., /fa or /fa/)
+    const isLocaleRoot = 
+      request.nextUrl.pathname === `/${locale}` || 
+      request.nextUrl.pathname === `/${locale}/`
+
+    const redirectToChat = session && isLocaleRoot
 
     if (redirectToChat) {
       const { data: homeWorkspace, error } = await supabase
@@ -27,7 +39,7 @@ export async function middleware(request: NextRequest) {
       }
 
       return NextResponse.redirect(
-        new URL(`/${homeWorkspace.id}/chat`, request.url)
+        new URL(`/${locale}/${homeWorkspace.id}/chat`, request.url)
       )
     }
 

@@ -1,3 +1,13 @@
 {
-  "Ask anything. Type \"/\" for prompts, \"@\" for files, and \"#\" for tools.": "Ask anything. Type \"/\" for prompts, \"@\" for files, and \"#\" for tools."
+  "Ask anything. Type \"/\" for prompts, \"@\" for files, and \"#\" for tools.": "Ask anything. Type \"/\" for prompts, \"@\" for files, and \"#\" for tools.",
+  "Ask anything. Type @  /  #  !": "Ask anything. Type @  /  #  !",
+  "New Chat": "New Chat",
+  "Settings": "Settings",
+  "Profile": "Profile",
+  "Chat": "Chat",
+  "Chats": "Chats",
+  "Talking to": "Talking to",
+  "Images are not supported for this model. Use models like GPT-4 Vision instead.": "Images are not supported for this model. Use models like GPT-4 Vision instead.",
+  "Chatbot UI": "Chatbot UI",
+  "Start Chatting": "Start Chatting"
 }

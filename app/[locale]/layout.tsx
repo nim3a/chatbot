@@ -12,10 +12,18 @@ import { ReactNode } from "react"
 import "./globals.css"
 
 const inter = Inter({ subsets: ["latin"] })
-const APP_NAME = "Chatbot UI"
-const APP_DEFAULT_TITLE = "Chatbot UI"
-const APP_TITLE_TEMPLATE = "%s - Chatbot UI"
-const APP_DESCRIPTION = "Chabot UI PWA!"
+
+// Import Vazirmatn font for Persian localization
+import { Vazirmatn } from "next/font/google"
+const vazirmatn = Vazirmatn({
+  subsets: ["arabic", "latin"],
+  variable: "--font-vazirmatn",
+  display: "swap"
+})
+const APP_NAME = "ChatQT | دستیار هوشمند فارسی"
+const APP_DEFAULT_TITLE = "ChatQT | دستیار هوشمند فارسی"
+const APP_TITLE_TEMPLATE = "%s - ChatQT"
+const APP_DESCRIPTION = "سرویس هوش مصنوعی پیشرفته"
 
 interface RootLayoutProps {
   children: ReactNode
@@ -86,9 +94,10 @@ export default async function RootLayout({
 
   const { t, resources } = await initTranslations(locale, i18nNamespaces)
 
+  // FORCE Persian (fa) and RTL - Hardcoded for SaaS mode
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className={inter.className}>
+    <html lang="fa" dir="rtl" suppressHydrationWarning>
+      <body className={vazirmatn.className}>
         <Providers attribute="class" defaultTheme="dark">
           <TranslationsProvider
             namespaces={i18nNamespaces}
